@@ -1,0 +1,179 @@
+timestamp: 2012-10-27T09:48:39.888183
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-10-27T09:48:39.972756
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-27T09:48:40.029532
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-10-27T09:48:40.098871
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-10-27T09:48:40.155088
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-27T09:48:40.224493
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-10-27T10:06:38.597618
+CREATE TABLE registration(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2012-10-27T10:12:02.733789
+ALTER TABLE registration ADD password1 CHAR(512);
+timestamp: 2012-10-27T10:12:02.819127
+ALTER TABLE registration ADD password2 CHAR(512);
+timestamp: 2012-10-27T10:12:02.869108
+ALTER TABLE registration ADD handle CHAR(512);
+timestamp: 2012-10-27T10:12:02.919325
+ALTER TABLE registration ADD resume CHAR(512);
+timestamp: 2012-10-27T10:12:02.977469
+ALTER TABLE registration ADD email CHAR(512);
+timestamp: 2012-10-27T10:12:03.027439
+ALTER TABLE registration ADD profile_pic CHAR(512);
+timestamp: 2012-10-27T10:12:03.077486
+ALTER TABLE registration ADD college CHAR(512);
+timestamp: 2012-10-27T10:13:04.718535
+ALTER TABLE registration ADD phone CHAR(512);
+timestamp: 2012-10-27T10:35:16.114651
+ALTER TABLE auth_user ADD password1 CHAR(512);
+timestamp: 2012-10-27T10:35:16.178817
+ALTER TABLE auth_user ADD password2 CHAR(512);
+timestamp: 2012-10-27T10:35:16.220478
+ALTER TABLE auth_user ADD handle CHAR(512);
+timestamp: 2012-10-27T10:35:16.262131
+ALTER TABLE auth_user ADD name CHAR(512);
+timestamp: 2012-10-27T10:35:16.303794
+ALTER TABLE auth_user ADD resume CHAR(512);
+timestamp: 2012-10-27T10:35:16.345692
+ALTER TABLE auth_user ADD profile_pic CHAR(512);
+timestamp: 2012-10-27T10:35:16.395456
+ALTER TABLE auth_user ADD phone CHAR(512);
+timestamp: 2012-10-27T10:35:16.437146
+ALTER TABLE auth_user ADD college CHAR(512);
+timestamp: 2012-10-27T10:37:14.264817
+ALTER TABLE auth_user ADD hello CHAR(512);
+timestamp: 2012-10-27T11:32:24.390224
+ALTER TABLE auth_user ADD about CHAR(512);
+timestamp: 2012-10-27T11:56:09.838921
+CREATE TABLE events(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    start TIMESTAMP
+);
+success!
+timestamp: 2012-10-27T12:23:57.800341
+ALTER TABLE events ADD end TIMESTAMP;
+timestamp: 2012-10-27T12:23:57.858132
+ALTER TABLE events ADD flow_of_questions CHAR(512);
+timestamp: 2012-10-27T12:23:57.908161
+ALTER TABLE events ADD judge CHAR(512);
+timestamp: 2012-10-27T12:23:57.957903
+ALTER TABLE events ADD organizer CHAR(512);
+timestamp: 2012-10-27T12:23:58.010368
+CREATE TABLE event_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_id CHAR(512),
+    user_id CHAR(512),
+    score INTEGER,
+    status CHAR(512),
+    penalty INTEGER,
+    current_question INTEGER
+);
+success!
+timestamp: 2012-10-27T12:25:08.927391
+CREATE TABLE questions(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    event CHAR(512),
+    question_no INTEGER,
+    question CHAR(512),
+    answer CHAR(512)
+);
+success!
+timestamp: 2012-10-27T13:19:28.814851
+CREATE TABLE event_tab(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_id CHAR(512),
+    title CHAR(512),
+    raw_content CHAR(512)
+);
+success!
+timestamp: 2012-10-27T13:32:55.475666
+ALTER TABLE event_tab ADD tab_id INTEGER;
+timestamp: 2012-10-27T17:39:48.572389
+CREATE TABLE question(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(512),
+    event INTEGER,
+    question_no INTEGER,
+    question CHAR(512),
+    answer CHAR(512)
+);
+success!
+timestamp: 2012-10-28T15:28:20.286436
+ALTER TABLE auth_user ADD contact CHAR(512);
+timestamp: 2012-11-23T13:54:31.532664
+CREATE TABLE forum_topic(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_id INTEGER,
+    title CHAR(512),
+    lock CHAR(1),
+    user_id CHAR(512),
+    date DATE
+);
+success!
+timestamp: 2012-11-23T13:54:31.606261
+CREATE TABLE comments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_id INTEGER,
+    forum_topic_id INTEGER,
+    user_id CHAR(512),
+    comment CHAR(512),
+    time_stamp TIME
+);
+success!
+timestamp: 2012-11-23T14:12:20.168960
+ALTER TABLE comments ADD question_no INTEGER;
+timestamp: 2012-11-23T15:51:42.258581
+ALTER TABLE event_user ADD user_data INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;

@@ -1,0 +1,18 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,True}}
+{{extend 'layout.html'}}
+
+<div id='content'>
+<h4/>{{=title}}</h4>
+<p>{{=XML(about)}}</p>
+</div>
+{{block right_sidebar}}
+<h3> Options </h3>
+<ul>
+    {{for tab in tabs:}}
+        <li>{{=A(tab.title,_href=URL('event_home?event_id='+str(event_id)+'&tab_id='+str(tab.tab_id)))}}</li>
+
+    {{pass}}
+        <li>{{=A("Question Statement",_href=URL('questions?event_id='+str(event_id)+'&question_no='+str(0)))}}</li>
+</ul>
+{{end}}
+

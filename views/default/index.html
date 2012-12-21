@@ -1,0 +1,17 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,True}}
+{{extend 'layout.html'}}
+
+<div id='content'>
+<h4/>{{=title}}</h4>
+<p>{{=about}}</p>
+</div>
+{{block right_sidebar}}
+<h3> Events </h3>
+<ul>
+    {{for event in events:}}
+        <li>{{=A(event.name,_href=URL('event_home?event_id='+str(event.id)+'&tab_id=1'))}}</li>
+
+    {{pass}}
+</ul>
+{{end}}
+
